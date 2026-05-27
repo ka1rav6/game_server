@@ -18,9 +18,17 @@ Player:: Player(int id, Point pos){
 
 Player::~Player(){
 }
-void Player::moveX(){
+void Player::moveRight(){
     this->position.x += x_vel;
 }
-void Player::moveY(){
+void Player::moveDown(){
     this->position.y += y_vel;
+}
+
+void Player::moveUp(){
+    this->position.y -= y_vel;
+}
+
+void Player::moveLeft(){
+    this->position.x -= x_vel;
 }

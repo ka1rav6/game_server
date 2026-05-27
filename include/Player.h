@@ -14,8 +14,10 @@ public:
     ~Player();
     void connectToServer(const int PORT);
     void disconnect();
-    void moveX();
-    void moveY();
+    void moveUp();
+    void moveDown();
+    void moveRight();
+    void moveLeft();
     unsigned int getId() const { 
         return uid;
     }

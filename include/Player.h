@@ -16,6 +16,9 @@ public:
     void disconnect();
     void moveX();
     void moveY();
+    unsigned int getId() const { 
+        return uid;
+    }
 
     friend std::ostream& operator<<(std::ostream& os, const Player& f) {
         return os << "Unique ID: " << f.uid << " Position: " << f.position << " " << "\n";

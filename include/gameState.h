@@ -9,6 +9,8 @@
 // other includes
 #include <utility>
 #include <vector>
+#include <string>
+#include <sstream>
 
 struct State{
     std::vector<Player> players;
@@ -17,5 +19,10 @@ struct State{
 
 std::ostream& operator<<(std::ostream&, const State&);
 std::istream& operator>>(std::istream&, State&);
+
+std::string serializeState(const State&);
+State deserializeState(const std::string&);
+
+void initializePosition(State& state);
 
 #endif

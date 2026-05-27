@@ -1,17 +1,14 @@
 cmake_minimum_required(VERSION 3.16)
 
-project(MyProject LANGUAGES CXX)
+project(game_server LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-# Collect all source files
-file(GLOB_RECURSE SOURCES
+file(GLOB_RECURSE srcs
     src/*.cpp
 )
 
-# Create executable (change name if you want)
-add_executable(${PROJECT_NAME} ${SOURCES})
+add_executable(${PROJECT_NAME} ${srcs})
 
-# Include header directory
 target_include_directories(${PROJECT_NAME} PRIVATE include)

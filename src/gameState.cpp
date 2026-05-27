@@ -25,7 +25,8 @@ const std::vector<int> initialPoints ={
 };
 
 void initializePosition(State& state){
-    for (int i = 0; i < 8; i++){
+    INITIAL_POS.clear();
+    for (int i = 0; i < initialPoints.size() / 2; i++){
         Point p;
         p.x = initialPoints.at(2 * i);
         p.y = initialPoints.at(2 * i + 1);

@@ -1,5 +1,5 @@
-#ifndef GAMESTATE_H
-#define GAMESTATE_H
+#ifndef POINT_H
+#define POINT_H
 
 struct Point{
     float x;

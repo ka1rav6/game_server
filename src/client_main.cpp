@@ -37,6 +37,26 @@ void on_fail(websocketpp::connection_hdl hdl) {
     connected.store(false);
 }
 
+void input_loop() {
+    std::string line;
+    while (std::getline(std::cin, line)) {
+        if (!connected.load()) {
+            std::cerr << "[client] not connected\n";
+            continue;
+        }
+        if (line.empty()) continue;
+        if (line == "quit" || line == "exit") {
+            global_client->close(global_hdl, websocketpp::close::status::going_away, "client exit");
+            break;
+        }
+
+        websocketpp::lib::error_code ec;
+        global_client->send(global_hdl, line, websocketpp::frame::opcode::text, ec);
+        if (ec) {
+            std::cerr << "[client] send error: " << ec.message() << "\n";
+        }
+    }
+}
 
 int main() {
     ws_client client;

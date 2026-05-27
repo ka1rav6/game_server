@@ -66,3 +66,31 @@ std::istream& operator>>(std::istream& is, State& s) {
 
     return is;
 }
+
+std::string serializeState(const State& s) {
+    std::ostringstream oss;
+    oss << s.players.size() << "\n";
+    for (const auto& player : s.players) {
+        oss << player.getId() << " " << player.position.x << " " << player.position.y << "\n";
+    }
+    oss << s.flags.first.position.x << " " << s.flags.first.position.y << " " << s.flags.first.color << "\n";
+    oss << s.flags.second.position.x << " " << s.flags.second.position.y << " " << s.flags.second.color << "\n";
+    return oss.str();
+}
+
+State deserializeState(const std::string& data) {
+    State s;
+    std::istringstream iss(data);
+    size_t count = 0;
+    iss >> count;
+    for (size_t i = 0; i < count; i++) {
+        unsigned int uid;
+        float x, y;
+        iss >> uid >> x >> y;
+        Player p(uid, x, y);
+        s.players.push_back(p);
+    }
+    iss >> s.flags.first.position.x >> s.flags.first.position.y >> s.flags.first.color;
+    iss >> s.flags.second.position.x >> s.flags.second.position.y >> s.flags.second.color;
+    return s;
+}

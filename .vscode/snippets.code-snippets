@@ -1,0 +1,9 @@
+{
+  "Cmake defualt boilerplate": {
+    "prefix": "cm!",
+    "body": [
+      "cmake_minimum_required(VERSION 3.16)\n\nproject(MyProject LANGUAGES CXX)\n\nset(CMAKE_CXX_STANDARD 17)\nset(CMAKE_CXX_STANDARD_REQUIRED ON)\n\n# Collect all source files\nfile(GLOB_RECURSE SOURCES\n    src/*.cpp\n)\n\n# Create executable (change name if you want)\nadd_executable(${PROJECT_NAME} ${SOURCES})\n\n# Include header directory\ntarget_include_directories(${PROJECT_NAME} PRIVATE include)"
+    ],
+    "description": "Cmake defualt boilerplate"
+  }
+}

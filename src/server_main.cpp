@@ -46,6 +46,19 @@ void parse_and_execute(const std::string& command) {
     else
         std::cerr << "[server] unknown action: " << action << "\n";
 }
+void on_message(ws_server* s, websocketpp::connection_hdl hdl, ws_server::message_ptr msg) {
+    std::string command = msg->get_payload();
+    std::cout << "[server][thread:" << std::this_thread::get_id() << "] received: " << command << "\n";
+    std::lock_guard<std::mutex> lock(state_mutex);
+    parse_and_execute(command);
+    auto response = serializeState(game_state);
+
+    try {
+        s->send(hdl, response, websocketpp::frame::opcode::text);
+    } catch (const websocketpp::exception e) {
+        std::cerr << "[server] send failed: " << e.what() << "\n";
+    }
+}
 
 
 int main() {

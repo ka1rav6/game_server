@@ -46,7 +46,7 @@ void initializePosition(State& state){
 std::ostream& operator<<(std::ostream& os, const State& s) {
     os << "Players:\n";
     for (const auto& player : s.players) {
-        os << player << "\n";
+        os << player;
     }
     os << "Flag1: " << s.flags.first << "\n";
     os << "Flag2: " << s.flags.second << "\n";

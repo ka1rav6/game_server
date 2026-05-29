@@ -23,7 +23,7 @@ public:
     }
 
     friend std::ostream& operator<<(std::ostream& os, const Player& f) {
-        return os << "Unique ID: " << f.uid << " Position: " << f.position << " " << "\n";
+        return os << "Unique ID: " << f.uid << " Position: " << f.position ;
     }    
     friend std::istream& operator>>(std::istream& is, Player& f) {
         return is >> f.position >> f.uid;

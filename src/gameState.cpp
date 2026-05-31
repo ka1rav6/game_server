@@ -34,7 +34,8 @@ void initializePosition(State& state){
     }
     int i = 0;
     while (i < n){
-        Player player(i, INITIAL_POS.at(i));
+        char color = i >= n / 2 ? 'R' : 'B';
+        Player player(i, INITIAL_POS.at(i), color);
         state.players.emplace_back(player);
         i++;
     }
@@ -58,7 +59,8 @@ std::istream& operator>>(std::istream& is, State& s) {
     s.players.clear();
 
     for (size_t i = 0; i < n; i++) {
-        Player p(i, i+1, i + 2);
+        char color = i >= n / 2 ? 'R' : 'B';
+        Player p(i, i+1, i + 2, color);
         is >> p;
         s.players.push_back(p);
     }
@@ -86,9 +88,10 @@ State deserializeState(const std::string& data) {
     iss >> count;
     for (size_t i = 0; i < count; i++) {
         unsigned int uid;
+        char c;
         float x, y;
-        iss >> uid >> x >> y;
-        Player p(uid, x, y);
+        iss >> uid >> x >> y >> c;
+        Player p(uid, x, y, c);
         s.players.push_back(p);
     }
     iss >> s.flags.first.position.x >> s.flags.first.position.y >> s.flags.first.color;

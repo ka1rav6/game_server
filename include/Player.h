@@ -9,8 +9,8 @@ class Player{
 public:
     Point position;
     Player();
-    Player(int id, float x, float y);
-    Player(int id, Point pos);
+    Player(int, float, float, char);
+    Player(int, Point, char);
     ~Player();
     void connectToServer(const int PORT);
     void disconnect();
@@ -18,21 +18,22 @@ public:
     void moveDown();
     void moveRight();
     void moveLeft();
-    unsigned int getId() const { 
+    unsigned int getId() const {
         return uid;
     }
 
     friend std::ostream& operator<<(std::ostream& os, const Player& f) {
-        return os << "Unique ID: " << f.uid << " Position: " << f.position ;
-    }    
+        return os << "Unique ID: " << f.uid << " Position: " << f.position << " Team Color: " << f.color << " ";
+    }
     friend std::istream& operator>>(std::istream& is, Player& f) {
-        return is >> f.position >> f.uid;
+        return is >> f.position >> f.uid >> f.color;
     }
 
 private:
     unsigned int uid;
     float x_vel = 10;
     float y_vel = 10;
+    char color; // R or B
 
     
 };

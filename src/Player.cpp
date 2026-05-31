@@ -3,16 +3,19 @@
 
 Player::Player() : uid(0), position{0, 0} {}
 
-Player::Player(int id, float x, float y){
+Player::Player(int id, float x, float y, char col){
     this->position.x = x;
     this->position.y = y;
     // this->connectToServer(PORT);
     this->uid = id;
+    this->color = col;
 }
 
-Player:: Player(int id, Point pos){
+Player:: Player(int id, Point pos, char col){
     this->uid =  id;
     this->position = pos;
+    this->color = col;
+
 }
 
 
